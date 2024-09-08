@@ -11,4 +11,5 @@ func SetupRouter(services *services.Services, cfg *config.Config) *gin.Engine {
 	// init router
 	router := gin.Default()
 
+	return router
 }
