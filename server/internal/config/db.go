@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func InitDB(cfg Config) (*gorm.DB, error) {
+func InitDB(cfg *Config) (*gorm.DB, error) {
 	log.Printf("Connecting to Postgres\n")
 	db, err := gorm.Open(postgres.Open(cfg.DatabaseUrl))
 

@@ -19,12 +19,13 @@ type Config struct {
 	GmailPassword string `env:"GMAIL_PASSWORD"`
 }
 
-func LoadConfig(ctx context.Context) (config Config, err error) {
-	err = envconfig.Process(ctx, &config)
+func LoadConfig(ctx context.Context) (*Config, error) {
+	config := Config{}
+	err := envconfig.Process(ctx, &config)
 
 	if err != nil {
-		return
+		return nil, err
 	}
 
-	return
+	return &config, nil
 }

@@ -1,10 +1,10 @@
-package model
+package models
 
 import (
 	"gorm.io/gorm"
 )
 
-// User model
+// User models
 type User struct {
 	gorm.Model
 	Username string `gorm:"uniqueIndex" json:"username"`

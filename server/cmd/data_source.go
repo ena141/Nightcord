@@ -2,7 +2,7 @@ package main
 
 import (
 	"Nightcord/server/internal/config"
-	"Nightcord/server/internal/model"
+	"Nightcord/server/internal/models"
 	"gorm.io/gorm"
 	"log"
 )
@@ -11,7 +11,7 @@ type dataSource struct {
 	DB *gorm.DB
 }
 
-func initDS(cfg config.Config) (*dataSource, error) {
+func initDS(cfg *config.Config) (*dataSource, error) {
 	log.Println("Initializing data source ...")
 
 	db, err := config.InitDB(cfg)
@@ -21,7 +21,7 @@ func initDS(cfg config.Config) (*dataSource, error) {
 	}
 
 	if err = db.AutoMigrate(
-		&model.User{},
+		&models.User{},
 	); err != nil {
 		return nil, err
 	}
