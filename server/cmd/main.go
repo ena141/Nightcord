@@ -34,7 +34,7 @@ func main() {
 	services := initDI(ds, cfg)
 
 	// Get the router
-	router := api.SetupRouter(services, cfg)
+	router := api.NewRouter(services, cfg)
 
 	// Start the server
 	go func() {

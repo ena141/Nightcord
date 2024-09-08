@@ -10,7 +10,11 @@ type Handler struct {
 	userHandler *UserHandler
 }
 
-func SetupRouter(services *services.Services, cfg *config.Config) *gin.Engine {
+type Services struct {
+	UserService *services.UserService
+}
+
+func NewRouter(services *Services, cfg *config.Config) *gin.Engine {
 	userHandler := NewUserHandler(services)
 	handler := &Handler{
 		userHandler: userHandler,

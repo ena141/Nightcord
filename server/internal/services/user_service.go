@@ -4,18 +4,14 @@ import (
 	"Nightcord/server/internal/repository"
 )
 
-type UserService interface {
-	GetUser(uid string)
-}
-
-type UserServiceImpl struct {
+type UserService struct {
 	userRepository repository.UserRepository
 }
 
-func NewUserService(userRepository repository.UserRepository) UserService {
-	return &UserServiceImpl{userRepository: userRepository}
+func NewUserService(userRepository repository.UserRepository) *UserService {
+	return &UserService{userRepository: userRepository}
 }
 
-func (*UserServiceImpl) GetUser(uid string) {
+func (*UserService) GetUser(uid string) {
 
 }
