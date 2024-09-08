@@ -7,6 +7,7 @@ import (
 )
 
 func SetupRouter(services *services.Services, cfg *config.Config) *gin.Engine {
+	services.UserService.GetUser(cfg.DatabaseUrl)
 
 	// init router
 	router := gin.Default()
