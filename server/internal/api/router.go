@@ -6,26 +6,26 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Handler struct {
-	userHandler *UserHandler
-}
-
 type Services struct {
-	UserService *services.UserService
+	UserService services.UserService
 }
 
 func NewRouter(services *Services, cfg *config.Config) *gin.Engine {
 	userHandler := NewUserHandler(services)
-	handler := &Handler{
-		userHandler: userHandler,
-	}
+	authHandler := NewAuthHandler(services)
 
 	// init router
 	router := gin.Default()
 
-	router.Group("/user")
+	userGroup := router.Group("/user")
 	{
-		router.GET("/:id", handler.userHandler.GetUser)
+		userGroup.GET("/:id", userHandler.GetUser)
+	}
+
+	authGroup := router.Group("/auth")
+	{
+		authGroup.POST("/register", authHandler.RegisterUser)
+		authGroup.POST("/login", authHandler.Login)
 	}
 
 	return router

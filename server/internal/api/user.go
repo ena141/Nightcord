@@ -9,10 +9,10 @@ type UserHandler struct {
 	userService services.UserService
 }
 
-func NewUserHandler(services *services.Services) *UserHandler {
+func NewUserHandler(services *Services) *UserHandler {
 	return &UserHandler{userService: services.UserService}
 }
 
-func (UserHandler *UserHandler) GetUser(c *gin.Context) {
-	UserHandler.userService.GetUser("123")
+func (h *UserHandler) GetUser(c *gin.Context) {
+
 }
