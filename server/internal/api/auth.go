@@ -9,6 +9,7 @@ import (
 
 type AuthHandler struct {
 	userService services.UserService
+	jwtService  services.JWTService
 }
 
 func NewAuthHandler(services *Services) *AuthHandler {
@@ -53,5 +54,15 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
+	// Generate JWT for the user
+	token, err := h.jwtService.GenerateToken(loginInfo.Email)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token", "details": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Login successful",
+		"token":   token,
+	})
 }

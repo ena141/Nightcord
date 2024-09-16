@@ -8,6 +8,7 @@ import (
 
 type Services struct {
 	UserService services.UserService
+	JWTService  services.JWTService
 }
 
 func NewRouter(services *Services, cfg *config.Config) *gin.Engine {
