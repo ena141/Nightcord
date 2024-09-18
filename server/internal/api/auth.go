@@ -16,7 +16,8 @@ func NewAuthHandler(services *Services) *AuthHandler {
 	return &AuthHandler{userService: services.UserService}
 }
 
-func (h *AuthHandler) RegisterUser(c *gin.Context) {
+// Register handler function
+func (h *AuthHandler) Register(c *gin.Context) {
 	var user *models.User
 	if err := c.ShouldBindJSON(user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -32,6 +33,7 @@ func (h *AuthHandler) RegisterUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Registration successful", "user": user})
 }
 
+// Login handler function
 func (h *AuthHandler) Login(c *gin.Context) {
 	var loginInfo struct {
 		Email    string `json:"email"`

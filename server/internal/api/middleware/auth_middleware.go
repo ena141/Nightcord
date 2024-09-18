@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// AuthorizeJWT serves as a middleware to check the JWT token
 func AuthorizeJWT(jwtService services.JWTService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		const BEARER_SCHEMA = "Bearer "

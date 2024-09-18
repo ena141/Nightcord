@@ -25,7 +25,7 @@ func NewRouter(services *Services, cfg *config.Config) *gin.Engine {
 
 	authGroup := router.Group("/auth")
 	{
-		authGroup.POST("/register", authHandler.RegisterUser)
+		authGroup.POST("/register", authHandler.Register)
 		authGroup.POST("/login", authHandler.Login)
 	}
 
